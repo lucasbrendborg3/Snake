@@ -1,0 +1,69 @@
+table, td, tr {
+  border: 1px solid black;
+  table-layout: fixed;
+  width: 26px;
+  height: 26px;
+  text-align: center;
+  border-collapse: collapse;
+  white-space: nowrap;
+}
+
+.fa-flag {
+  margin-bottom: -13px;
+  color: blue;
+  border: none;
+  text-align: center;
+}
+
+.fa-bomb {
+  margin-bottom: -13px;
+  color: red;
+  border: none;
+  text-align: center;
+}
+
+table {
+  margin-top: 5px;
+}
+
+#antalFlag {
+  float: left;
+  border-radius: 5px;
+  background-color: lightblue;
+  padding: 5px 5px 5px 5px;
+  margin-top: 2px;
+}
+
+#resetGame {
+  display: block;
+  margin: auto;
+  margin-bottom: 2px;
+  border-radius: 10px;
+  font-size: 17px;
+  height: 30px;
+  text-decoration: none;
+  background-color: yellow;
+}
+
+#timer {
+  margin-top: -30px;
+  background-color: #ff5050;
+  border-radius: 5px;
+  padding: 5px 5px 5px 5px;
+  float: right;
+}
+
+#titel {
+  font-size: 20px;
+  border: 1.5px solid black;
+}
+
+#bane {
+  float: left;
+  margin-right: 50px;
+  margin-top: -20px;
+}
+
+#tider {
+  font-size: 20px;
+}
