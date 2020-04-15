@@ -120,3 +120,9 @@ function down() {
   test.innerHTML = "Down";
   direction = "down";
 }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 078e3b5154d08ff9c790ceab93dcd1e12e6cb8f4
