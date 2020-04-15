@@ -123,4 +123,3 @@ function down() {
 
 
 
-console.log("Hello");
