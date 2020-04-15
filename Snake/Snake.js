@@ -120,6 +120,3 @@ function down() {
   test.innerHTML = "Down";
   direction = "down";
 }
-
-
-
