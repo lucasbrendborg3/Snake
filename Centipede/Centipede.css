@@ -1,0 +1,13 @@
+#canvas {
+  border: 1px solid black;"
+  position: fixed;
+}
+
+h1 {
+  font-size: 100px;
+  font-style: italic;
+}
+
+#test2 {
+  float: right;
+}
