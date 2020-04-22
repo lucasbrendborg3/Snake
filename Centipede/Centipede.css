@@ -1,6 +1,7 @@
 #canvas {
   border: 1px solid black;"
   position: fixed;
+  background-color: black;
 }
 
 h1 {
