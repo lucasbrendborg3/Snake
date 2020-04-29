@@ -121,11 +121,6 @@ function snakeMove() {
         snakeCells.shift();
       }
       snake.x -= 15;
-    } else if() {
-
-
-
-
     } else {
       snake.x += 15;
       context.fillStyle = "green";
