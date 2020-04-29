@@ -4,7 +4,6 @@ var test = document.getElementById("test");
 var test2 = document.getElementById("test2");
 var direction;
 var hastighed = 200;
-var intervalPlane;
 var intervalSnake;
 var plane = {
   x: 350,
@@ -16,8 +15,11 @@ var snake = {
   x: -15,
   y: 0,
   width: 13,
-  height: 13
+  height: 13,
+  move: snakeMove(),
+  direction: "right"
 }
+var skudActive = false;
 var snakeCells = [];
 movePlane();
 snakeMove();
@@ -84,56 +86,28 @@ function movePlane() {
 }
 
 function skyd() {
-  let x = plane.x+4;
-  let y = plane.y-11;
-  intervalPlane = setInterval(function() {
-    context.fillStyle = "red";
-    context.clearRect(x, y--, 2, 10.5);
-    context.fillRect(x, y--, 2, 10);
-  }, 3);
+  if (skudActive === false) {
+    let x = plane.x+4;
+    let y = plane.y-11;
+    let intervalSkud = setInterval(function() {
+      context.fillStyle = "red";
+      context.clearRect(x, y--, 2, 10.5);
+      context.fillRect(x, y--, 2, 10);
+      skudActive = true;
+      if (y < -15) {
+        skudActive = false;
+        clearInterval(intervalSkud);
+      }
+    }, 3);
+  }
 }
 
 function snakeMove() {
   intervalSnake = setInterval(function() {
-    if (snake.x === 490) {
-      snake.y += 15;
-      context.fillStyle = "green";
-      context.fillRect(snake.x+1, snake.y+1, snake.width, snake.height);
-      snakeCells.push({
-        x: snake.x,
-        y: snake.y,
-        width: snake.width,
-        height: snake.height});
-      if (snakeCells.length > 8) {
-        context.clearRect(snakeCells[0].x, snakeCells[0].y, snakeCells[0].width+2, snakeCells[0].height+2)
-        snakeCells.shift();
-      }
-      snake.y += 15;
-      context.fillStyle = "green";
-      context.fillRect(snake.x+1, snake.y+1, snake.width, snake.height);
-      snakeCells.push({
-        x: snake.x,
-        y: snake.y,
-        width: snake.width,
-        height: snake.height});
-      if (snakeCells.length > 8) {
-        context.clearRect(snakeCells[0].x, snakeCells[0].y, snakeCells[0].width+2, snakeCells[0].height+2)
-        snakeCells.shift();
-      }
-      snake.x -= 15;
-    } else {
-      snake.x += 15;
-      context.fillStyle = "green";
-      context.fillRect(snake.x+1, snake.y+1, snake.width, snake.height);
-      snakeCells.push({
-        x: snake.x,
-        y: snake.y,
-        width: snake.width,
-        height: snake.height});
-      if (snakeCells.length > 8) {
-        context.clearRect(snakeCells[0].x, snakeCells[0].y, snakeCells[0].width+2, snakeCells[0].height+2)
-        snakeCells.shift();
-      }
+    if (snake.direction === "right") {
+
+
+
     }
   }, 100)
 }
