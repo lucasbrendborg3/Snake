@@ -12,8 +12,8 @@ var plane = {
   height: 10
 }
 var snake = {
-  x: -15,
-  y: 0,
+  x: -17,
+  y: -15,
   width: 13,
   height: 13,
   move: snakeMove(),
@@ -22,7 +22,6 @@ var snake = {
 var skudActive = false;
 var snakeCells = [];
 movePlane();
-snakeMove();
 
 document.onkeydown = function(e) {
     e = e || window.event;
@@ -104,21 +103,41 @@ function skyd() {
 
 function snakeMove() {
   intervalSnake = setInterval(function() {
-    if (snake.direction === "right") {
-      if (snake.x === 490) {
-        snake.y += 15;
-        context.fillStyle = "green";
-        context.fillRect(snake.x+1, snake.y+1, snake.width, snake.height);
-        snakeCells.push({
-          x: snake.x,
-          y: snake.y,
-          width: snake.width,
-          height: snake.height});
-        if (snakeCells.length > 8) {
-          context.clearRect(snakeCells[0].x, snakeCells[0].y, snakeCells[0].width+2, snakeCells[0].height+2)
-          snakeCells.shift();
-        }
+if (snake.x === 508) {
+  snake.direction = "left";
+  snake.y += 15;
+}
+if (snake.x === -17) {
+  snake.direction = "right";
+  snake.y += 15;
+}
+      if (snake.direction === "right") {
+          snake.x += 15;
+          context.fillStyle = "green";
+          context.fillRect(snake.x+2, snake.y+2, snake.width, snake.height);
+          snakeCells.push({
+            x: snake.x,
+            y: snake.y,
+            width: snake.width,
+            height: snake.height});
+                        console.log(snake.x);
       }
+      if (snake.direction === "left") {
+          if (snake.direction === "left") {
+              snake.x -= 15;
+              context.fillStyle = "green";
+              context.fillRect(snake.x+2, snake.y+2, snake.width, snake.height);
+              snakeCells.push({
+                x: snake.x,
+                y: snake.y,
+                width: snake.width,
+                height: snake.height});
+                            console.log(snake.x);
     }
+  }
+    if (snakeCells.length > 8) {
+      context.clearRect(snakeCells[0].x, snakeCells[0].y, snakeCells[0].width+2, snakeCells[0].height+2)
+      snakeCells.shift();
+  }
   }, 100)
 }
