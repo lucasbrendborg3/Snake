@@ -1,13 +1,10 @@
-document.getElementById("grid");
-
+var grid = document.getElementById("grid");
+var turn = "white";
 generateGrid();
 
-
-function generateGrid() {
-  for (let i = 0; i < 10; i++) {
-    row = grid.insertRow(i);
-    for (let j = 0; j < 10; j++) {
-      cell = row.insertCell(j);
-    }
+//Checking pressed tile
+function onPress(cell) {
+  if (turn === cell.className) {
+    console.log("Hello!");
   }
 }
