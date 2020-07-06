@@ -1,9 +1,17 @@
-table, td, tr {
-  border: 1px solid black
+table {
+  border: 3px solid black
 }
 
 td, tr {
   height: 50px;
   width: 50px;
   text-align: center;
+}
+
+.bg-sort {
+  background-color: grey;
+}
+
+.dark-mode {
+  background-color: red;
 }

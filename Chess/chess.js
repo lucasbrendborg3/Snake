@@ -1,10 +1,6 @@
-var grid = document.getElementById("grid");
-var turn = "white";
-generateGrid();
+let board = new Board();
 
-//Checking pressed tile
-function onPress(cell) {
-  if (turn === cell.className) {
-    console.log("Hello!");
-  }
-}
+board.init();
+board.render();
+
+// xxx. Skift turn
