@@ -3,6 +3,7 @@ function Board() {
   this.blackPieces = [];
   this.whitePieces = [];
   let selPiece;
+  let turn = "white";
 
   this.init = function() {
     this.blackPieces = this.createPieces({pawns: 1, officers: 0}, "piece-black");
@@ -30,7 +31,6 @@ function Board() {
         }
         cell.onclick = function(node) {
           // get id from createGrid
-console.log(node);
 
           let piece = thiz.findPiece(node);
 
@@ -38,6 +38,7 @@ console.log(node);
 
 
           thiz.showPossibleMoves(piece);
+          thiz.movePiece(node);
         }
       }
     }
@@ -107,12 +108,57 @@ console.log(node);
       if (selPiece) {
         selPiece.getPossibleMoves(this).forEach(function(move) {
           grid.rows[move.y].cells[move.x].classList.toggle("dark-mode");
+          grid.rows[move.y].cells[move.x].id = move.x + "," + move.y;
         });
       }
       piece.getPossibleMoves(this).forEach(function(move) {
         grid.rows[move.y].cells[move.x].classList.toggle("dark-mode");
+        grid.rows[move.y].cells[move.x].id = move.x + "," + move.y;
       });
       selPiece = piece;
     }
+  }
+
+  this.movePiece = function(node) {
+    console.log('selPiece= ', selPiece, 'node= ', node);
+
+    if (node.path[0].className.indexOf('dark-mode') >= 0) {
+      let id = node.path[0].id;
+      let idChar = id.split('');
+      if (turn == "white") {
+        let indexArr = this.whitePieces.indexOf(selPiece);
+        if (indexArr > -1) {
+          this.whitePieces.splice(indexArr, 1);
+
+          this.whitePieces.push(new Piece(selPiece.className, 'piece-white', Number(idChar[0]), Number(idChar[2]), String.fromCharCode(65+idChar[0]) + (8-idChar[2])))
+
+        }
+
+        turn = "black";
+
+      } else if (turn == "black") {
+        let indexArr = this.blackPieces.indexOf(selPiece);
+        if (indexArr > -1) {
+          this.blackPieces.splice(indexArr, 1);
+
+          this.blackPieces.push(new Piece(selPiece.className, 'piece-black', Number(idChar[0]), Number(idChar[2]), String.fromCharCode(65+idChar[0]) + (8-idChar[2])))
+
+        }
+
+        turn = "white";
+      }
+      grid.rows[idChar[2]].cells[idChar[0]].innerHTML = selPiece.className;
+      grid.rows[idChar[2]].cells[idChar[0]].className += selPiece.color + " " + selPiece.className;
+      grid.rows[idChar[2]].cells[idChar[0]].id = selPiece.id;
+
+      grid.rows[selPiece.y].cells[selPiece.x].className -= selPiece.innerHTML;
+      grid.rows[selPiece.y].cells[selPiece.x].innerHTML = "";
+      grid.rows[selPiece.y].cells[selPiece.x].id = "";
+
+      console.log('black-pieces ', this.blackPieces, ', ', 'white-pieces ', this.whitePieces);
+
+
+    }
+
   }
 }
